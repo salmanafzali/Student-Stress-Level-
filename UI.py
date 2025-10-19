@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.ttk import *
 from tkinter import messagebox, filedialog
+from pathlib import Path
 import pandas as pd 
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -10,6 +11,7 @@ from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.svm import SVC
 
 
+# Data Mining And Machin learning process
 # select attributes for process
 class AttributeSelector(BaseEstimator, TransformerMixin):
     # select attributes
@@ -115,3 +117,41 @@ class DataMining(BaseEstimator, TransformerMixin):
         final_df = pd.concat([df, y_transform], axis=1)
 
         return final_df
+    
+
+#======================== create windows ==========================
+def single_answer():
+    pass
+
+def group_answer():
+    pass
+
+# main window create
+def main_window():
+    def tips():
+        pass
+
+    global window
+    window = tk.Tk()
+    window.title("Stress Prediction")
+    window.geometry("600x580")
+    window.resizable(0, 0)
+
+    main_img = tk.PhotoImage(file="images/Main_pic.png")
+    Label(window, image=main_img).place(x=0, y=0)
+
+    tk.Label(window, text="Select the type of stress level result", font=("", "14"), bg="#ffffff", fg="#6A8372").pack(pady=20)
+
+    single_btn = tk.Button(window, text="Upload Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=single_answer)
+    single_btn.place(x=68, y=100, width=120, height=50)
+
+    group_btn = tk.Button(window, text="Enter Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=group_answer)
+    group_btn.place(x=410, y=100, width=120, height=50)
+
+    tip_img = tk.PhotoImage(file="images/Tips.png")
+    tk.Button(window, image=tip_img, command=tips).place(x=570, y=0)
+
+    window.mainloop()
+
+
+main_window()
