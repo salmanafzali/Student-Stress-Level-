@@ -121,7 +121,15 @@ class DataMining(BaseEstimator, TransformerMixin):
 
 #======================== create windows ==========================
 def single_answer():
-    pass
+    window.destroy()
+
+    root = tk.Tk()
+    root.title("Insert Details")
+    root.geometry("900x650")
+
+    root.mainloop()
+
+    return main_window()
 
 def group_answer():
     pass
@@ -158,12 +166,12 @@ def main_window():
     main_img = tk.PhotoImage(file="images/Main_pic.png")
     Label(window, image=main_img).place(x=0, y=0)
 
-    tk.Label(window, text="Select the type of stress level result", font=("", "14"), bg="#ffffff", fg="#6A8372").pack(pady=20)
+    tk.Label(window, text="Select the type of stress level result", font=("", "14"), bg="#ffffff", fg="#4A7758").pack(pady=20)
 
-    single_btn = tk.Button(window, text="Upload Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=single_answer)
+    single_btn = tk.Button(window, text="Enter Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=single_answer)
     single_btn.place(x=68, y=100, width=120, height=50)
 
-    group_btn = tk.Button(window, text="Enter Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=group_answer)
+    group_btn = tk.Button(window, text="Upload Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=group_answer)
     group_btn.place(x=410, y=100, width=120, height=50)
 
     tip_img = tk.PhotoImage(file="images/Tips.png")
@@ -172,4 +180,5 @@ def main_window():
     window.mainloop()
 
 
+# run window 
 main_window()
