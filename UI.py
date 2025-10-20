@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.ttk import *
-from tkinter import messagebox, filedialog
+from tkinter import messagebox, filedialog, font
 from pathlib import Path
 import pandas as pd 
 import numpy as np
@@ -129,7 +129,25 @@ def group_answer():
 # main window create
 def main_window():
     def tips():
-        pass
+        # create tip window
+        tip_window = tk.Toplevel(window)
+        tip_window.title("Tips")
+        tip_window.geometry("250x350")
+
+        img = tk.PhotoImage(file="images/Tips_bg.png")
+        Label(tip_window, image=img).place(x=0, y=0)
+
+        # tip for enter details button
+        tk.Label(tip_window, text="Enter Details", font=font.Font(size=12, weight='bold'), bg="#F5F5F5", fg="#4A7758").place(x=72, y=10)
+        tk.Label(tip_window, text="This button is for personal results", font=("", "11"), bg="#F5F5F5", fg="#6A8372").place(x=12, y=50)
+
+        # tips for upload details button
+        tk.Label(tip_window, text="Upload Details", font=font.Font(size=12, weight='bold'), bg="#F5F5F5", fg="#4A7758").place(x=65, y=120)
+        tk.Label(tip_window, text="This button is used for uploading files from universities or institudes", 
+                 font=("", "11"), wraplength=230, bg="#F5F5F5", fg="#6A8372").place(x=15, y=160)
+
+        tip_window.mainloop()
+
 
     global window
     window = tk.Tk()
