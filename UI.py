@@ -227,7 +227,7 @@ def single_answer():
     lbl_gender = tk.Label(root, text="Gender", font=("", "12"), bg="#f5f5f5")
     lbl_gender.place(x=150, y=180)
 
-    gender_menu = ["equivocal", "Female", "Male", "Prefer not to say"]
+    gender_menu = ["Blank", "Female", "Male", "Prefer not to say"]
     gender_select = tk.StringVar()
     OptionMenu(root, gender_select, *gender_menu).place(x=128, y=210, height=23, width=105)
 
@@ -235,7 +235,7 @@ def single_answer():
     lbl_year = tk.Label(root, text="Academic Year", font=("", "12"), bg="#f5f5f5")
     lbl_year.place(x=350, y=180)
 
-    year_menu = ["equivocal", "First Year", "Second Year", "Third Year", "Fourth Year", "Other"]
+    year_menu = ["Blank", "First Year", "Second Year", "Third Year", "Fourth Year", "Other"]
     year_select = tk.StringVar()
     OptionMenu(root, year_select, *year_menu).place(x=320, y=210, height=23, width=150)
 
@@ -243,12 +243,12 @@ def single_answer():
     lbl_quest1 = tk.Label(root, text="Question 1", font=("", "12"), bg="#f5f5f5")
     lbl_quest1.place(x=570, y=180)
 
-    quest1_menu = ["equivocal", "No", "Yes"]
+    quest1_menu = ["Blank", "No", "Yes"]
     quest1_select = tk.StringVar()
     OptionMenu(root, quest1_select, *quest1_menu).place(x=570, y=210, height=23, width=85)
 
     #  list for all question menu
-    questions_menu = ["equivocal", "0", "1", "2", "3", "4"]
+    questions_menu = ["Blank", "0", "1", "2", "3", "4"]
 
     #=========next feature=========
     lbl_quest2 = tk.Label(root, text="Question 2", font=("", "12"), bg="#f5f5f5")
@@ -325,7 +325,6 @@ def single_answer():
 
     # back window Button
     tk.Button(root, text="previous window", command=root.destroy, bg="#960018", fg="white").place(x=240, y=530, width=130, height=50)
-
 
     root.mainloop()
     
