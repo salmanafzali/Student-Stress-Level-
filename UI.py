@@ -120,12 +120,179 @@ class DataMining(BaseEstimator, TransformerMixin):
         final_df = pd.concat([df, y_transform], axis=1)
 
         return final_df
-    
-
+ 
+ 
 #======================== create windows ==========================
 def single_answer():
     def save():
-        pass
+        def question_lable_color(questions_check):
+            if questions_check[0] == "Yes":
+                lbl_gender.config(fg="red")
+            else:
+                lbl_gender.config(fg="black")
+            
+            if questions_check[1] == "Yes":
+                lbl_year.config(fg="red")
+            else:
+                lbl_year.config(fg="black")
+
+            if questions_check[2] == "Yes":
+                lbl_quest1.config(fg="red")
+            else:
+                lbl_quest1.config(fg="black")
+
+            if questions_check[3] == "Yes":
+                lbl_quest2.config(fg="red")
+            else:
+                lbl_quest2.config(fg="black")
+
+            if questions_check[4] == "Yes":
+                lbl_quest3.config(fg="red")
+            else:
+                lbl_quest3.config(fg="black")
+
+            if questions_check[5] == "Yes":
+                lbl_quest4.config(fg="red")
+            else:
+                lbl_quest4.config(fg="black")
+
+            if questions_check[6] == "Yes":
+                lbl_quest5.config(fg="red")
+            else:
+                lbl_quest5.config(fg="black")
+
+            if questions_check[7] == "Yes":
+                lbl_quest6.config(fg="red")
+            else:
+                lbl_quest6.config(fg="black")
+
+            if questions_check[8] == "Yes":
+                lbl_quest7.config(fg="red")
+            else:
+                lbl_quest7.config(fg="black")
+
+            if questions_check[9] == "Yes":
+                lbl_quest8.config(fg="red")
+            else:
+                lbl_quest8.config(fg="black")
+
+            if questions_check[10] == "Yes":
+                lbl_quest9.config(fg="red")
+            else:
+                lbl_quest9.config(fg="black")
+
+            if questions_check[11] == "Yes":
+                lbl_quest10.config(fg="red")
+            else:
+                lbl_quest10.config(fg="black")
+
+            if questions_check[12] == "Yes":
+                lbl_quest11.config(fg="red")
+            else:
+                lbl_quest11.config(fg="black")
+        
+        
+        error_check = False
+
+        # check name input value
+        name = ent_name.get()
+        if name == "":
+            lbl_name.config(fg="red")
+            error_check = True
+        else:
+            lbl_name.config(fg="black")
+
+        # check age input value
+        try: 
+            age = int(ent_age.get())
+            if age < 18:
+                age = "Below 18"
+            elif 18 <= age <= 22:
+                age = "18-22"
+            elif 23 <= age <= 26:
+                age = "23-26"
+            elif 27 <= age <= 30:
+                age = "27-30"
+            else:
+                age = "Above 30"
+            
+
+            lbl_age.config(fg="black")
+        except:
+            lbl_age.config(fg="red")
+            error_check = True
+        
+        # check cgpa input value
+        try: 
+            cgpa = float(ent_cgpa.get())
+            if cgpa < 2.50:
+                cgpa = "Below 2.50"
+            
+            elif 2.50 <= cgpa < 3:
+                cgpa = "2.50 - 2.99"
+                
+            elif 3 <= cgpa < 3.40:
+                cgpa = "3.00 - 3.39"
+                
+            elif 3.40 <= cgpa < 3.80:
+                cgpa = "3.40 - 3.79"
+                
+            elif 3.80 <= cgpa <= 4:
+                cgpa = "3.80 - 4.00"
+            
+            else:
+                cgpa = "Other"
+            
+            lbl_cgpa.config(fg="black")
+        except:
+            lbl_cgpa.config(fg="red")
+            error_check = True
+
+        #====================check True select for question Menu====================
+        # input options value
+        questions = [gender_select.get(), year_select.get(), quest1_select.get(), quest2_select.get(), quest3_select.get(), quest4_select.get(), quest5_select.get(), 
+                     quest6_select.get(), quest7_select.get(), quest8_select.get(), quest9_select.get(), quest10_select.get(), quest11_select.get()]
+        # check options value
+        quest_error_ix = []        # to select question number error
+        for i in questions:
+            if i == "Blank":
+                quest_error_ix.append("Yes")
+                error_check = True
+            else:
+                quest_error_ix.append("No")
+        #=======================end======================
+
+        if error_check:
+            question_lable_color(quest_error_ix)                   # for change question label color
+            messagebox.showerror("Error", "Be careful when entering or selecting values!")
+        
+        else:
+            question_lable_color(quest_error_ix)                   # for change question label color
+            dm = DataMining()                                      # create Object
+            
+            # Putting the correct value in relation to the data for year
+            if questions[1] == "First Year":
+                questions[1] = "First Year or Equivalent"
+                
+            elif questions[1] == "Second Year":
+                questions[1] = "Second Year or Equivalent"
+                
+            elif questions[1] == "Third Year":
+                questions[1] = "Third Year or Equivalent"
+                
+            elif questions[1] == "Fourth Year":
+                questions[1] = "Fourth Year or Equivalent"
+            
+            # new dataset for save values and use in data mining class
+            new_dtset = {"Age": [age], "Gender": [questions[0]], "Academic_Year": [questions[1]], "CGPA": [cgpa], "Scholarship": [questions[2]],
+                         "Upset": [int(questions[3])], "control_important_affairs": [int(questions[4])], "Nervous": [int(questions[5])], "disability": [int(questions[6])],
+                         "ability": [int(questions[7])], "Academic_situation": [int(questions[8])], "control_upset_affairs": [int(questions[9])],
+                         "Top_performance": [int(questions[10])], "angered_performance": [int(questions[11])], "Not_overcome": [int(questions[12])]}
+
+            new_dtset = pd.DataFrame(new_dtset)
+            result = dm.fit_transform(new_dtset)
+            
+            messagebox.showinfo("Result", f"Hi {name.title()} \n Your Stress is: {result["Stress_Label"].values}")
 
     # To guide the user in answering
     def tips():
@@ -220,8 +387,8 @@ def single_answer():
     lbl_cgpa = tk.Label(root, text="CGPA", font=("", "12"), bg="#f5f5f5")
     lbl_cgpa.place(x=550, y=70)
 
-    txt_cgpa = tk.Entry(root, font=("", "12"), fg="#5A8377", justify='center')
-    txt_cgpa.place(x=535, y=100, width=80)
+    ent_cgpa = tk.Entry(root, font=("", "12"), fg="#5A8377", justify='center')
+    ent_cgpa.place(x=535, y=100, width=80)
 
     #=========next feature=========
     lbl_gender = tk.Label(root, text="Gender", font=("", "12"), bg="#f5f5f5")
