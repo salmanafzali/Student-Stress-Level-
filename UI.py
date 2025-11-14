@@ -300,12 +300,8 @@ def single_answer():
         tip_window = tk.Toplevel(root)
         tip_window.title("Help Page")
         tip_window.geometry("770x430")
-
-        tip_window.resizable(0, 0)
-
-        tip_img = tk.PhotoImage(file="images/Person_Tip_main.png")
-        Label(tip_window, image=tip_img).place(x=0, y=0)
-
+        tip_window.config(bg="#5A8377")
+        
         #========================= questions text =========================
         # CGPA calculator 
         tk.Label(tip_window, text="CGPA:", font=font.Font(weight='bold',  size=10), bg="#5A8377", fg="white").place(x=40, y=5)
@@ -498,32 +494,9 @@ def single_answer():
     # back to main window after close root
     return main_window()
 
-def group_answer():
-    pass
 
 # main window create
 def main_window():
-    def tips():
-        # create tip window
-        tip_window = tk.Toplevel(window)
-        tip_window.title("Tips")
-        tip_window.geometry("250x350")
-
-        # background image for tips window
-        img = tk.PhotoImage(file="images/Main_Tips_bg.png")
-        Label(tip_window, image=img).place(x=0, y=0)
-
-        # tip for enter details button
-        tk.Label(tip_window, text="Enter Details", font=font.Font(size=12, weight='bold'), bg="#F5F5F5", fg="#4A7758").place(x=72, y=10)
-        tk.Label(tip_window, text="This button is for personal results", font=("", "11"), bg="#F5F5F5", fg="#6A8372").place(x=12, y=50)
-
-        # tips for upload details button
-        tk.Label(tip_window, text="Upload Details", font=font.Font(size=12, weight='bold'), bg="#F5F5F5", fg="#4A7758").place(x=65, y=120)
-        tk.Label(tip_window, text="This button is used for uploading files from universities or institudes", 
-                 font=("", "11"), wraplength=230, bg="#F5F5F5", fg="#6A8372").place(x=15, y=160)
-
-        tip_window.mainloop()
-
     # create main window on global for better close and open
     global window
     window = tk.Tk()
@@ -539,15 +512,7 @@ def main_window():
 
     # personal button result
     single_btn = tk.Button(window, text="Enter Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=single_answer)
-    single_btn.place(x=68, y=100, width=120, height=50)
-
-    # file button result 
-    group_btn = tk.Button(window, text="Upload Details", bg="#6A8372", fg="#ffffff", font=("", "12"), command=group_answer)
-    group_btn.place(x=410, y=100, width=120, height=50)
-    
-    # light guidance
-    tip_img = tk.PhotoImage(file="images/Main_Tips.png")
-    tk.Button(window, image=tip_img, command=tips).place(x=570, y=0)
+    single_btn.place(x=240, y=80, width=120, height=50)
 
     window.mainloop()
 
