@@ -12,12 +12,12 @@ An app to let students know their stress levels
 Minimum requirement of Python 3 and above.
 Requirement to install tkinter, scikit-learn, pandas, numpy, matplotlib libraries.
 
-- installing libararys
-pip install tkinter
-pip install pandas
-pip install numpy
-pip install matplotlib
-pip install scikit-learn
+### installing libararys
+- pip install tkinter
+- pip install pandas
+- pip install numpy
+- pip install matplotlib
+- pip install scikit-learn
 
 ## how to run 
 python UI.py
